@@ -22,3 +22,12 @@ This project demonstrates fundamental principles of password security and explai
 - Add salting
 - Add password strength validation
 - Compare different hashing algorithms
+
+## 🐳 Running with Docker
+
+This project can be executed inside a Docker container to provide
+a consistent and isolated runtime environment
+
+### Build the Docker image
+```bash
+docker build -t password-security
