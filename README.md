@@ -31,7 +31,3 @@ a consistent and isolated runtime environment
 ### Build the Docker image
 ```bash
 docker build -t password-security
-
-### Run the container
-```bash
-docker run -it password-security
