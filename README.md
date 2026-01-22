@@ -31,6 +31,11 @@ a consistent and isolated runtime environment
 ### Build the Docker image
 ```bash
 docker build -t password-security
+```
+### Run the container
+```bash
+docker run -it password-securitye
+```
 
 This container is configured to run as a non-root user in order to
 follow Docker security best practices and reduce potential attack impact.
