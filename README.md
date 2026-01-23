@@ -1,41 +1,29 @@
-# password-security-basics
-Basic demonstration of password hashing and security principles
+# Secure Data Pipeline & Password Security
+Basic demonstration of password hashing, security principles, and integrity checks.
+
 ## Purpose
-This project demonstrates fundamental principles of password security and explains why passwords should never be stored in plaintext.
+This project demonstrates fundamental principles of password security and explains why passwords should never be stored in plaintext. It also includes an integrity check mechanism to verify data consistency.
 
 ## What this project does
-- Accepts a user password as input
-- Hashes the password using a cryptographic hash function
-- Verifies password correctness by comparing hashes
+- **Password Hashing**: Accepts a user password and hashes it using cryptographic functions.
+- **Verification**: Verifies password correctness by comparing hashes.
+- **Integrity Check**: Scans data files and compares them against stored hashes to detect tampering.
 
-## Security considerations
-- Plaintext password storage is highly insecure
-- Hashing reduces the risk of password disclosure
-- Weak passwords remain vulnerable to brute-force attacks
+## Security Considerations
+- **Plaintext Storage**: Highly insecure; this project demonstrates the transition to hashing.
+- **Brute-Force**: Even hashed passwords are vulnerable if they are weak.
+- **Non-Root Execution**: The Docker container is configured to run as a non-root user to follow security best practices.
 
-## What I learned
-- Difference between plaintext and hashed passwords
-- Basic password-related security risks
-- Importance of secure authentication mechanisms
+## Troubleshooting & Setup (WSL2 Fixes)
+During the development on Windows with WSL2, several environment issues were addressed:
 
-## Possible improvements
-- Add salting
-- Add password strength validation
-- Compare different hashing algorithms
+### 1. PowerShell Initialization Error
+If Windows PowerShell fails with `InitialSessionState` exceptions, use the **WSL/Ubuntu** terminal profile directly in VS Code.
 
-## Running with Docker
-
-This project can be executed inside a Docker container to provide
-a consistent and isolated runtime environment
-
-### Build the Docker image
+### 2. DNS Resolution Fix
+If Docker cannot pull the base image (`python:3.11-slim`) due to `connection refused` on DNS lookups:
 ```bash
-docker build -t password-security
+sudo rm /etc/resolv.conf
+sudo bash -c 'echo "nameserver 8.8.8.8" > /etc/resolv.conf'
+sudo chattr +i /etc/resolv.conf
 ```
-### Run the container
-```bash
-docker run -it password-securitye
-```
-
-This container is configured to run as a non-root user in order to
-follow Docker security best practices and reduce potential attack impact.
